@@ -69,3 +69,21 @@ Successfully downloaded and assembled all 1231 samples via `GDCprepare()`
 into a `SummarizedExperiment` object, saved locally as `data/brca_data.rds` 
 (excluded from Git via `.gitignore`).
 
+### Immune Microenvironment Analysis (in progress)
+Decided to extend the project beyond a standard tumor-vs-normal DE analysis 
+by characterizing the tumor immune microenvironment, given how active this 
+area is in current breast cancer research.
+
+Ran `quanTIseq` immune cell deconvolution (via the `quantiseqr` Bioconductor 
+package) on all 1231 TCGA-BRCA samples, estimating the relative proportion 
+of 10 immune cell types per tumor from bulk RNA-seq expression.
+
+**Issue resolved:** Initially attempted the broader `immunedeconv` wrapper 
+package, but its Windows installation required several GitHub-only 
+dependencies (`xCell`, `ComICS`) that failed to build, consistent with the 
+package's own documentation recommending conda for exactly this reason. 
+Switched to `quantiseqr`, a native Bioconductor package implementing the 
+same quanTIseq method with reliable Windows binary support.
+
+**Next steps:** Link immune cell composition to PAM50 molecular subtype, 
+survival outcomes, and differential expression (immune-hot vs. immune-cold).

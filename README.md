@@ -85,5 +85,21 @@ package's own documentation recommending conda for exactly this reason.
 Switched to `quantiseqr`, a native Bioconductor package implementing the 
 same quanTIseq method with reliable Windows binary support.
 
-**Next steps:** Link immune cell composition to PAM50 molecular subtype, 
-survival outcomes, and differential expression (immune-hot vs. immune-cold).
+### PAM50 Subtype vs. Immune Infiltration
+Merged quanTIseq immune deconvolution results with PAM50 molecular subtype 
+annotations (already included in TCGAbiolinks' clinical metadata as 
+`paper_BRCA_Subtype_PAM50`; no additional data source needed).
+
+Ran Kruskal-Wallis tests (with Benjamini-Hochberg correction for multiple 
+testing) across all 11 immune cell types. All 11 showed statistically 
+significant differences in infiltration across the 5 PAM50 subtypes 
+(adjusted p < 0.0005 for every cell type), with M2 macrophages 
+(p_adj ≈ 1e-49) and CD4 T cells (p_adj ≈ 2e-24) showing the strongest 
+associations — consistent with established literature on distinct immune 
+microenvironments across breast cancer molecular subtypes.
+
+Generated boxplots for all 11 immune cell types by subtype (`results/`), 
+plus a summary statistics table (`results/kruskal_subtype_immune_tests.csv`).
+
+**Next steps:** Link immune infiltration to survival outcomes; compare 
+differential expression between immune-hot and immune-cold tumors.
